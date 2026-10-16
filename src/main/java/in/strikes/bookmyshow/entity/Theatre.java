@@ -20,5 +20,5 @@ public class Theatre extends BaseEntity{
     @Column(nullable = false)
     private String city;
 
-    private String addres;
+    private String address;
 }
