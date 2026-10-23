@@ -1,5 +1,6 @@
 package in.strikes.bookmyshow;
 
+import in.strikes.bookmyshow.config.JwtProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
