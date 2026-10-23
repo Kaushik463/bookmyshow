@@ -13,5 +13,5 @@ spring:
     locations: classpath:db/migration
 app:
   jwt:
-    secret: ${JWT_SECRET:987654321}
-    expiration-ms: 86400000   
+    secret: ${JWT_SECRET:987654321987654321987654321987654321}
+    expiration-ms: 86400000
