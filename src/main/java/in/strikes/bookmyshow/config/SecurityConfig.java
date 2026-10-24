@@ -51,7 +51,7 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/movies/**", "/api/shows/**").permitAll()
-                        .requestMatchers("/api/movies/**", "/api/theatres/**", "/api/shows/**").hasRole("ADMIN")
+                        .requestMatchers("/api/movies/**", "/api/theatres/**", "/api/screens/**", "/api/shows/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())
