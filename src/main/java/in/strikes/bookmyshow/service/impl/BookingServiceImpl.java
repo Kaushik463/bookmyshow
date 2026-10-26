@@ -21,6 +21,8 @@ import in.strikes.bookmyshow.repository.UserRepository;
 import in.strikes.bookmyshow.service.BookingService;
 import in.strikes.bookmyshow.service.PaymentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -87,6 +89,18 @@ public class BookingServiceImpl implements BookingService {
         showSeatRepository.saveAll(showSeats);
 
         return toResponse(booking, showSeats);
+    }
+
+    @Override
+    public Page<BookingResponse> getMyBookings(String userEmail, Pageable pageable) {
+        return bookingRepository.findByUser_Email(userEmail, pageable)
+                .map(booking -> {
+                    List<ShowSeat> showSeats = showSeatRepository.findByShowId(booking.getShow().getId())
+                            .stream()
+                            .filter(ss -> ss.getBooking() != null && ss.getBooking().getId().equals(booking.getId()))
+                            .toList();
+                    return toResponse(booking, showSeats);
+                });
     }
 
     @Override

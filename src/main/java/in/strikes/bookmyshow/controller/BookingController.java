@@ -7,6 +7,8 @@ import in.strikes.bookmyshow.dto.response.SeatAvailabilityResponse;
 import in.strikes.bookmyshow.service.BookingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -47,5 +49,12 @@ public class BookingController {
     @GetMapping("/api/shows/{showId}/seats")
     public ResponseEntity<List<SeatAvailabilityResponse>> getSeatAvailability(@PathVariable Long showId) {
         return ResponseEntity.ok(bookingService.getSeatAvailability(showId));
+    }
+    @GetMapping("/api/bookings/me")
+    public ResponseEntity<Page<BookingResponse>> getMyBookings(
+            Authentication authentication,
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(bookingService.getMyBookings(authentication.getName(), pageable));
     }
 }

@@ -4,6 +4,8 @@ import in.strikes.bookmyshow.dto.request.BookingRequest;
 import in.strikes.bookmyshow.dto.request.PaymentRequest;
 import in.strikes.bookmyshow.dto.response.BookingResponse;
 import in.strikes.bookmyshow.dto.response.SeatAvailabilityResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -13,4 +15,5 @@ public interface BookingService {
     void cancelBooking(Long bookingId, String userEmail);
     List<SeatAvailabilityResponse> getSeatAvailability(Long showId);
     void expireStaleBookings();
+    Page<BookingResponse> getMyBookings(String userEmail, Pageable pageable);
 }
