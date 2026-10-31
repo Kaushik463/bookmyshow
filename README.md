@@ -16,6 +16,18 @@ A backend movie ticket booking system built with Spring Boot, demonstrating prod
 - **Containerized**: multi-stage Dockerfile + docker-compose (app + MySQL)
 - **CI**: GitHub Actions runs the full build and test suite on every push
 
+## Deployment
+
+Deployed on AWS:
+- **EC2** (Amazon Linux 2023) runs the app as a Docker container
+- **RDS MySQL** holds the data, reachable only from the EC2 security group
+- **Flyway** applies the schema migrations on startup
+- Secrets (DB password, JWT secret) are passed as environment variables, not committed to the repo
+
+Live demo (when the server is running): `http://NEW_IP:8080/swagger-ui/index.html`
+
+![Swagger UI running on local host](docs/swagger-aws.png)
+
 ## Tech Stack
 
 Java 17 · Spring Boot · Spring Security (JWT) · Spring Data JPA · Hibernate · MySQL · Flyway · MapStruct · Lombok · JUnit 5 · Mockito · Testcontainers · Docker · GitHub Actions · Maven
